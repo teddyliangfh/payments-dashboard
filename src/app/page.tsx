@@ -1,13 +1,20 @@
+"use client"
+import { Box } from '@chakra-ui/react';
+import { SetPaymentDay } from '../components/setPaymentDay';
+import { paymentPlanData } from "@/mock/paymentPlan"
+import { Toaster } from "@/components/ui/toaster"
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <div>HOME PAGE</div>
+  // const handleSuccess = () => {
+  //   alert('Payment day changed successfully!');
+  // };
 
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-      </footer>
-    </div>
+  return (
+    <Box minH="100vh" p={6} display="flex" flexDirection="column" alignItems="center" justifyContent="center" gap={16}>
+      <Box flex="1" display="flex" alignItems="center" justifyContent="center" bg="lightblue" w="full" py={5} px={6}>
+        <SetPaymentDay paymentPlan={paymentPlanData} />
+        <Toaster />
+      </Box>
+    </Box>
   );
 }

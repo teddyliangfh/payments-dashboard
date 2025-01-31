@@ -6,9 +6,9 @@ import { ThemeProvider } from "next-themes"
 export default function RootProvider(props: { children: React.ReactNode }) {
     return (
         <ChakraProvider value={defaultSystem}>
-            <ThemeProvider attribute="class" disableTransitionOnChange>
-                {props.children}
-            </ThemeProvider>
+            {/* <ThemeProvider attribute="class" disableTransitionOnChange> */}
+            {props.children}
+            {/* </ThemeProvider> */}
         </ChakraProvider>
     )
 }
