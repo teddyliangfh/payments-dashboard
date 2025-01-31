@@ -18,6 +18,7 @@ import { updatePaymentPlan } from "@/apis/updatePaymentPlan"
 
 type Props = {
     paymentPlan: PaymentPlan;
+    onUpdateSuccess: () => void;
 };
 
 /* TODO: add selector to choose the time period, e.g. weekly, bi-weekly, monthly;
@@ -90,7 +91,7 @@ export function SetPaymentDay(Props: Props) {
             </Text>
             <Text>
                 <Text as={"span"} fontWeight="medium"> Current Payment Day: </Text>
-                <Text as={"span"} color="GrayText"> {weekDays[currentDay]} </Text>
+                <Text as={"span"} color="GrayText"> {weekDays.find(day => day.value === currentDay)?.label} </Text>
             </Text>
             <Text>
                 <Text as={"span"} fontWeight="medium"> Next Payment Date: </Text>
@@ -140,20 +141,19 @@ export function SetPaymentDay(Props: Props) {
  * @property {string} items[].label - The name of the day.
  * @property {number} items[].value - The numeric representation of the day.
  */
+
+const weekDays = [
+    { label: "Monday", value: 1 },
+    { label: "Tuesday", value: 2 },
+    { label: "Wednesday", value: 3 },
+    { label: "Thursday", value: 4 },
+    { label: "Friday", value: 5 },
+    { label: "Saturday", value: 6 },
+    { label: "Sunday", value: 0 },
+];
+
 const selections = createListCollection({
-    items: [
-        { label: "Monday", value: 1 },
-        { label: "Tuesday", value: 2 },
-        { label: "Wednesday", value: 3 },
-        { label: "Thursday", value: 4 },
-        { label: "Friday", value: 5 },
-        { label: "Saturday", value: 6 },
-        { label: "Sunday", value: 0 },
-    ],
+    items: weekDays,
 })
 
-// weekDays List
-const weekDays = [
-    "Sunday", "Monday", "Tuesday", "Wednesday",
-    "Thursday", "Friday", "Saturday"
-];
+
