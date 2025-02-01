@@ -94,12 +94,12 @@ export function SetPaymentDay(Props: Props) {
                 <Text as={"span"} color="GrayText"> {weekDays.find(day => day.value === currentDay)?.label} </Text>
             </Text>
             <Text>
-                <Text as={"span"} fontWeight="medium"> Next Payment Date: </Text>
+                <Text as={"span"} fontWeight="medium"> Next Updated Payment Date: </Text>
                 {/* To silence hydration warnings on an element: https://react.dev/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html*/}
                 <Text as={"span"} color="GrayText" suppressHydrationWarning> {nextPaymentDate} </Text>
             </Text>
 
-            <SelectRoot collection={selections} size="lg" width="80%" min-width="320px" onValueChange={handleChange} borderRadius={8} gap={4} >
+            <SelectRoot collection={selections} size="lg" width="80%" min-width="320px" onValueChange={handleChange} borderRadius={8} gap={4} data-testid="selector">
                 <SelectTrigger>
                     <SelectValueText placeholder="Select Day" />
                 </SelectTrigger>
@@ -110,7 +110,17 @@ export function SetPaymentDay(Props: Props) {
                         </SelectItem>
                     ))}
                 </SelectContent>
-                <Button type="submit" bgColor="grey" color="white" loading={loading} disabled={loading} onClick={handleUpdatePaymentDay}>Change Payment Day</Button>
+                <Button
+                    type="submit"
+                    bgColor="grey"
+                    color="white"
+                    loading={loading}
+                    disabled={loading}
+                    onClick={handleUpdatePaymentDay}
+                    data-testid="change-day-button"
+                >
+                    Change Payment Day
+                </Button>
             </SelectRoot>
         </VStack>
     )

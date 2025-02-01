@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calculateNextPaymentDate } from '../calculateNextPaymentDate';
+import { calculateNextPaymentDate } from '@/utils/calculateNextPaymentDate';
 
 describe('calculateNextPaymentDate', () => {
     it('should calculate the next payment date when the selected day is after the current day', () => {

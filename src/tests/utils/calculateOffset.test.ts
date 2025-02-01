@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calculateOffset } from '../calculateOffset';
+import { calculateOffset } from '@/utils/calculateOffset';
 
 describe('calculateOffset', () => {
     it('should return the correct offset when the selected day is after the current day', () => {
