@@ -1,7 +1,7 @@
 "use client"
 //!! todo, try use form and useActionState to simplify the form handling, add unit tests, remove unused components, update readme
 import { createListCollection, Button, VStack, Text, type SelectValueChangeDetails } from "@chakra-ui/react"
-import { use, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { toaster } from "@/components/ui/toaster"
 import {
     SelectContent,
@@ -99,7 +99,7 @@ export function SetPaymentDay(Props: Props) {
                 <Text as={"span"} color="GrayText" suppressHydrationWarning> {nextPaymentDate} </Text>
             </Text>
 
-            <SelectRoot collection={selections} size="lg" width="80%" min-width="320px" onValueChange={handleChange} borderRadius={8} gap={4}>
+            <SelectRoot collection={selections} size="lg" width="80%" min-width="320px" onValueChange={handleChange} borderRadius={8} gap={4} >
                 <SelectTrigger>
                     <SelectValueText placeholder="Select Day" />
                 </SelectTrigger>
