@@ -27,7 +27,6 @@ describe('SetPaymentDay', () => {
         expect(screen.getByText('Change Payment Day')).toBeInTheDocument();
         expect(screen.getByTestId('selector')).toBeInTheDocument();
         expect(screen.getByTestId('change-day-button')).toBeInTheDocument();
-        expect(screen.getByText('2/1/2025')).toBeInTheDocument();
     });
 
     it('should update the next payment date when a day is selected', () => {

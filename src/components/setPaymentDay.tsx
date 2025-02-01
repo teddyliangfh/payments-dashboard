@@ -1,12 +1,11 @@
 "use client"
-//!! todo, try use form and useActionState to simplify the form handling, add unit tests, remove unused components, update readme
+
 import { createListCollection, Button, VStack, Text, type SelectValueChangeDetails } from "@chakra-ui/react"
 import { useState, useEffect } from "react";
 import { toaster } from "@/components/ui/toaster"
 import {
     SelectContent,
     SelectItem,
-    SelectLabel,
     SelectRoot,
     SelectTrigger,
     SelectValueText,

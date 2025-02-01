@@ -3,7 +3,7 @@ export const updatePaymentPlan = (id: string, offsetInDays: number): Promise<{ m
     return new Promise<{ message: string }>((resolve, reject) => {
         setTimeout(() => {
             if (Math.random() > 0.2) {
-                resolve({ message: "Payment schedule updated successfully" });
+                resolve({ message: `Payment schedule updated successfully with offsetInDays:${offsetInDays}` });
             } else {
                 reject(new Error("Failed to update payment schedule"));
             }
