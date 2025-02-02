@@ -1,4 +1,4 @@
-## Payment Day selector
+## Payment Day selector (a MVP) 
 
 ### 🔧 Tech stack and tools
 * next.js 15
@@ -6,7 +6,6 @@
 * pnpm
 * TypeScript
 * Chakra ui 
-* tailwindcss
 * React Testing Library, Vitest
 * eslint
 
@@ -18,7 +17,7 @@
 * npm install -g pnpm
 * install dependencies: pnpm i (pnpm install)
 * now run: the project: pnpm run dev 
-* open localhost:3000
+* open http://localhost:3000 
   
 
 ### 📖 tech debts and Todo

@@ -20,23 +20,54 @@ type Props = {
     onUpdateSuccess: () => void;
 };
 
-/* TODO: add selector to choose the time period, e.g. weekly, bi-weekly, monthly;
-    add information about the total amount and the amount of each instalment with the updated dates;
-    a calendar showing all the payment dates and amounts  
-*/
 
+/**
+ * Component for setting the payment day.
+ * 
+ * @component
+ * @param {Props} Props - The properties object.
+ * @param {Object} Props.paymentPlan - The payment plan object.
+ * @param {Array} Props.paymentPlan.instalments - The array of instalments in the payment plan.
+ * @param {string} Props.paymentPlan.instalments[].date - The date of the instalment.
+ * 
+ * @returns {JSX.Element} The rendered component.
+ * 
+ * @example
+ * <SetPaymentDay paymentPlan={paymentPlan} />
+ * 
+ * @remarks
+ * This component allows users to adjust their payment day by selecting a new day from a dropdown menu.
+ * It displays the current payment day and the next updated payment date based on the selected day.
+ * The component handles the update process, including validation, loading state, and displaying success or error messages.
+ */
 export function SetPaymentDay(Props: Props) {
     const { paymentPlan } = Props;
     const [loading, setLoading] = useState(false);
     // assume the first instalment is the current one
     const currentComingPayDate = new Date(paymentPlan.instalments[0].date);
-
     const currentDay = currentComingPayDate.getDay(); // 0-6 (Sun-Sat)
     const [selectedDay, setSelectedDay] = useState<number | null>(null);
     const [nextPaymentDate, setNextPaymentDate] = useState<string | null>(currentComingPayDate.toLocaleDateString());
 
 
 
+
+    /**
+     * Handles the update of the payment day.
+     * 
+     * This function performs the following steps:
+     * 1. Checks if a day has been selected. If not, displays a warning message.
+     * 2. Sets the loading state to true.
+     * 3. Calculates the offset in days between the current day and the selected day.
+     * 4. Attempts to update the payment plan with the new offset.
+     * 5. Displays a success message if the update is successful.
+     * 6. Displays an error message if the update fails.
+     * 7. Resets the loading state.
+     * 
+     * @async
+     * @function handleUpdatePaymentDay
+     * @returns {Promise<void>} A promise that resolves when the update process is complete.
+     */
     const handleUpdatePaymentDay = async () => {
         // TODO add a warning confirmation dialog here for better UX
         if (selectedDay === null) {
@@ -44,6 +75,7 @@ export function SetPaymentDay(Props: Props) {
                 title: "warning",
                 description: "Please select a day to update the payment schedule",
                 type: "warning",
+                duration: 5000,
             })
             return;
         }
@@ -57,12 +89,14 @@ export function SetPaymentDay(Props: Props) {
                 title: "Success",
                 description: response.message,
                 type: "success",
+                duration: 5000,
             });
         } catch (error) {
             toaster.create({
                 title: "Error",
                 description: "Failed to update payment schedule, please try again later",
                 type: "error",
+                duration: 5000,
             });
             setLoading(false);
         } finally {
@@ -84,21 +118,21 @@ export function SetPaymentDay(Props: Props) {
 
 
     return (
-        <VStack bg="white" px={6} py={12} borderRadius={16} width="40%" minW="360px" gap={4}>
+        <VStack bg="white" px={6} py={12} borderRadius={16} width="1/3" minW="360px" gap={2}>
             <Text fontSize="lg" fontWeight="bold">
                 Adjust Your Payment Day
             </Text>
             <Text>
-                <Text as={"span"} fontWeight="medium"> Current Payment Day: </Text>
+                <Text as={"span"} > Current Payment Day: </Text>
                 <Text as={"span"} color="GrayText"> {weekDays.find(day => day.value === currentDay)?.label} </Text>
             </Text>
             <Text>
-                <Text as={"span"} fontWeight="medium"> Next Updated Payment Date: </Text>
+                <Text as={"span"} > Next Updated Payment Date: </Text>
                 {/* To silence hydration warnings on an element: https://react.dev/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html*/}
                 <Text as={"span"} color="GrayText" suppressHydrationWarning> {nextPaymentDate} </Text>
             </Text>
 
-            <SelectRoot collection={selections} size="lg" width="80%" min-width="320px" onValueChange={handleChange} borderRadius={8} gap={4} data-testid="selector">
+            <SelectRoot collection={selections} size="lg" width="80%" min-width="320px" onValueChange={handleChange} borderRadius={8} gap={4} data-testid="selector" mt={8}>
                 <SelectTrigger>
                     <SelectValueText placeholder="Select Day" />
                 </SelectTrigger>
