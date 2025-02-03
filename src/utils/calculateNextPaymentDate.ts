@@ -1,13 +1,13 @@
+import { calculateOffset } from './calculateOffset';
+
 /**
- * Calculates the next payment date based on the selected day of the week.
+ * Calculates the next payment date based on the offset in days.
  *
- * @param selectedDay - The day of the week selected for the payment (0 for Sunday, 1 for Monday, ..., 6 for Saturday).
+ * @param offsetInDays - The number of days to offset from the current upcoming payment date.
  * @param currentComingPayDate - The current upcoming payment date.
- * @param currentDay - The current day of the week (0 for Sunday, 1 for Monday, ..., 6 for Saturday).
  * @returns The next payment date as a Date object.
  */
-export function calculateNextPaymentDate(selectedDay: number, currentComingPayDate: Date, currentDay: number): Date {
-    const offsetInDays = (selectedDay - currentDay + 7) % 7;
+export function calculateNextPaymentDate(offsetInDays: number, currentComingPayDate: Date): Date {
     const nextPaymentDate = new Date(currentComingPayDate);
     nextPaymentDate.setDate(currentComingPayDate.getDate() + offsetInDays);
     return nextPaymentDate;

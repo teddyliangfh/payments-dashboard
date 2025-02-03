@@ -111,7 +111,8 @@ export function SetPaymentDay(Props: Props) {
 
     useEffect(() => {
         if (selectedDay !== null) {
-            const newDate = calculateNextPaymentDate(selectedDay, currentComingPayDate, currentDay);
+            const offsetInDays = calculateOffset(currentDay, selectedDay);
+            const newDate = calculateNextPaymentDate(offsetInDays, currentComingPayDate);
             setNextPaymentDate(newDate.toLocaleDateString());
         }
     }, [selectedDay]);
